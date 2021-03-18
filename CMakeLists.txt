@@ -83,7 +83,7 @@ if (NOT WDT_USE_SYSTEM_FOLLY)
 endif()
 
 # WDT's library proper - comes from: ls -1 *.cpp | grep -iv test
-add_library(wdt_min
+add_library(wdt_min STATIC
 util/WdtSocket.cpp
 util/ClientSocket.cpp
 util/EncryptionUtils.cpp
@@ -117,7 +117,7 @@ set (WDT_FLAGS_RELATED_SRC
 util/WdtFlags.cpp
 Wdt.cpp
 )
-add_library(wdt ${WDT_FLAGS_RELATED_SRC})
+add_library(wdt STATIC ${WDT_FLAGS_RELATED_SRC})
 
 set_property(TARGET wdt PROPERTY VERSION ${PROJECT_VERSION})
 set_property(TARGET wdt_min PROPERTY VERSION ${PROJECT_VERSION})
@@ -232,7 +232,7 @@ if (NOT WDT_USE_SYSTEM_FOLLY)
     message(STATUS "no weak symbols, adding MallocImpl to folly src")
   endif()
 
-  add_library(folly4wdt ${FOLLY_CPP_SRC})
+  add_library(folly4wdt STATIC ${FOLLY_CPP_SRC})
   target_link_libraries(folly4wdt ${GLOG_LIBRARY} ${DOUBLECONV_LIBRARY})
 endif()
 

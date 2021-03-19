@@ -117,11 +117,14 @@ set (WDT_FLAGS_RELATED_SRC
 util/WdtFlags.cpp
 Wdt.cpp
 )
+
 add_library(wdt STATIC ${WDT_FLAGS_RELATED_SRC})
+
+add_library(wdtbind STATIC extern.cpp)
 
 set_property(TARGET wdt PROPERTY VERSION ${PROJECT_VERSION})
 set_property(TARGET wdt_min PROPERTY VERSION ${PROJECT_VERSION})
-target_link_libraries(wdt wdt_min)
+target_link_libraries(wdtbind wdt wdt_min)
 
 
 
@@ -248,11 +251,11 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/..)
 add_executable(wdtbin wdtCmdLine.cpp ${WDT_FLAGS_RELATED_SRC})
 set_target_properties(wdtbin PROPERTIES COMPILE_DEFINITIONS "STANDALONE_APP")
 
-target_link_libraries(wdtbin wdt_min)
+target_link_libraries(wdtbin wdt_min wdtbind)
 
 ### Install rules
 set_target_properties(wdtbin PROPERTIES RUNTIME_OUTPUT_NAME "wdt")
-install(TARGETS wdtbin wdt wdt_min
+install(TARGETS wdtbin wdt wdt_min wdtbind
   RUNTIME DESTINATION bin
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib

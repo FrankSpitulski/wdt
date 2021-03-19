@@ -45,8 +45,8 @@ set(WDT_USE_SYSTEM_FOLLY Off CACHE BOOL "Use folly library from system (default 
 # TODO: This doesn't seem to work / sets default to "" instead of Release...
 # set(CMAKE_BUILD_TYPE Release CACHE String "build type")
 # So hardcoding for now:
-#set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_BUILD_TYPE Debug)
+#set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_CXX_FLAGS "-msse4.2 -mpclmul")
 #set(CMAKE_CXX_FLAGS "-msse4.2 -mpclmul -Wextra -Wsign-compare -Wunused-variable")
 #set(CMAKE_CXX_FLAGS "-msse4.2 -mpclmul -Wextra -Wsign-compare -Wunused-variable -Wconversion -Wsign-conversion")
